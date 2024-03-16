@@ -3,8 +3,19 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular.io-example": {
+    "cabeetals": {
       "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "standalone": false
+        },
+        "@schematics/angular:directive": {
+          "standalone": false
+        },
+        "@schematics/angular:pipe": {
+          "standalone": false
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -12,10 +23,12 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist",
+            "outputPath": "dist/cabeetals",
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "polyfills": ["zone.js"],
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
@@ -54,10 +67,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "angular.io-example:build:production"
+              "buildTarget": "cabeetals:build:production"
             },
             "development": {
-              "buildTarget": "angular.io-example:build:development"
+              "buildTarget": "cabeetals:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -65,13 +78,16 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "angular.io-example:build"
+            "buildTarget": "cabeetals:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": ["zone.js", "zone.js/testing"],
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
             "tsConfig": "tsconfig.spec.json",
             "assets": [
               "src/favicon.ico",
@@ -82,23 +98,11 @@
             ],
             "scripts": []
           }
-        },
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "angular.io-example:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "angular.io-example:serve:production"
-            }
-          }
         }
       }
     }
   },
   "cli": {
-    "analytics": "2460da7a-b4a4-4eaa-8c5f-1722f788a094"
+    "analytics": "f51a1530-8e7e-4626-986b-6df56b1b0a4b"
   }
 }
