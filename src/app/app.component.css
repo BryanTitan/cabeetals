@@ -1,6 +1,9 @@
 :host {
   --content-padding: 10px;
 }
+main {
+  height: 100vh;
+}
 header {
   display: flex;
   gap: 1em;
