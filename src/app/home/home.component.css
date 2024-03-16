@@ -1,40 +1,67 @@
-.results {
-  display: grid;
-  column-gap: 14px;
-  row-gap: 14px;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 400px));
-  margin-top: 50px;
+section {
+  display: flex;
   justify-content: space-around;
+  align-items: center;
+  margin-top: 1em;
 }
 
-input[type="text"] {
-  border: solid 1px var(--primary-color);
-  padding: 10px;
-  border-radius: 8px;
-  margin-right: 4px;
-  display: inline-block;
-  width: 30%;
-}
-
-button {
-  padding: 10px;
-  border: solid 1px var(--primary-color);
+.cssbuttons-io-button {
   background: var(--primary-color);
-  color: white;
-  border-radius: 8px;
+  color: black;
+  font-family: inherit;
+  padding: 0.35em;
+  padding-left: 1.2em;
+  font-size: 17px;
+  font-weight: 500;
+  border-radius: 0.9em;
+  border: none;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  box-shadow: inset 0 0 1.6em -0.6em #e1bd03;
+  overflow: hidden;
+  position: relative;
+  height: 2.8em;
+  padding-right: 3.3em;
+  cursor: pointer;
+  width: 15rem;
 }
 
-@media (min-width: 500px) and (max-width: 768px) {
-  .results {
-      grid-template-columns: repeat(2, 1fr);
+@media (max-width: 600px) {
+  .cssbuttons-io-button {
+    width: 10rem;
   }
-  input[type="text"] {
-      width: 70%;
-  }   
 }
 
-@media (max-width: 499px) {
-  .results {
-      grid-template-columns: 1fr;
-  }    
+.cssbuttons-io-button .icon {
+  background: black;
+  margin-left: 1em;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.2em;
+  width: 2.2em;
+  border-radius: 0.7em;
+  box-shadow: 0.1em 0.1em 0.6em 0.2em #fbe04f;
+  right: 0.3em;
+  transition: all 0.3s;
+}
+
+.cssbuttons-io-button:hover .icon {
+  width: calc(100% - 0.6em);
+}
+
+.cssbuttons-io-button .icon svg {
+  width: 1.1em;
+  transition: transform 0.3s;
+  color: #fbe04f;
+}
+
+.cssbuttons-io-button:hover .icon svg {
+  transform: translateX(0.1em);
+}
+
+.cssbuttons-io-button:active .icon {
+  transform: scale(0.95);
 }
