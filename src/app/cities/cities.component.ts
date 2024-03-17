@@ -1,38 +1,39 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { Capital } from '../capital';
+import { City } from '../city';
 
 @Component({
-  selector: 'app-capitals',
+  selector: 'app-cities',
   standalone: true,
   imports: [CommonModule, RouterModule],
   template: `
     <div class="card">
       <h1>
-        {{ capital.name }}
+        {{ city.name }}
       </h1>
       <div class="card__content">
-        <p class="card__title">{{ capital.name }}</p>
+        <p class="card__title">
+          {{ city.isCapital ? 'Capital :' : 'Ville :' }} {{ city.name }}
+        </p>
         <p class="card__description">
-          {{ capital.country }}
+          {{ city.country }}
           <br />
-          Population: {{ capital.population }}
+          Population: {{ city.population }}
           <br />
-          Coordonnées : [{{ capital.coordinates[0] }},
-          {{ capital.coordinates[1] }}]
+          Coordonnées : [{{ city.coordinates[0] }}, {{ city.coordinates[1] }}]
         </p>
         <a
           class="card__link"
-          [routerLink]="['/details', capital.id]"
+          [routerLink]="['/details', city.id]"
           routerLinkActive="active"
           >Modifier</a
         >
       </div>
     </div>
   `,
-  styleUrls: ['./capitals.component.css'],
+  styleUrls: ['./cities.component.css'],
 })
-export class CapitalsComponent {
-  @Input() capital!: Capital;
+export class CitiesComponent {
+  @Input() city!: City;
 }

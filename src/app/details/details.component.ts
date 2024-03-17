@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CapitalService } from '../capital.service';
-import { Capital } from '../capital';
+import { CityService } from '../city.service';
+import { City } from '../city';
 
 @Component({
   selector: 'app-details',
@@ -17,11 +17,11 @@ import { Capital } from '../capital';
 })
 export class DetailsComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
-  capitalService = inject(CapitalService);
-  capital: Capital | undefined;
+  cityService = inject(CityService);
+  capital: City | undefined;
 
   constructor() {
     const capitalId = Number(this.route.snapshot.params['id']);
-    this.capital = this.capitalService.getCapitalById(capitalId);
+    this.capital = this.cityService.getCityById(capitalId);
   }
 }

@@ -11,7 +11,7 @@ const routeConfig: Routes = [
   {
     path: 'details/:id',
     component: DetailsComponent,
-    title: 'Capital details',
+    title: 'City details',
   },
 ];
 
