@@ -65,12 +65,3 @@ section {
 .cssbuttons-io-button:active .icon {
   transform: scale(0.95);
 }
-
-.cities {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2em;
-  justify-content: space-around;
-  align-items: center;
-  margin-top: 1em;
-}
