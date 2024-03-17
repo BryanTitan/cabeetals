@@ -1,5 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
 import * as L from 'leaflet';
+import { MarkerService } from '../marker.service';
 
 @Component({
   selector: 'app-map',
@@ -9,6 +10,7 @@ import * as L from 'leaflet';
   styleUrl: './map.component.css',
 })
 export class MapComponent implements AfterViewInit {
+  // markerService: MarkerService = inject(MarkerService);
   // Afin d'ajouter la carte intéractive, je me suis aidé grâce à la documentation de Leaflet et de l'API OpenStreetMap.
   // Un tuto est disponible sur le site de DigitalOcean à cette adresse :
   // https://www.digitalocean.com/community/tutorials/angular-angular-and-leaflet#step-1-setting-up-the-project
@@ -19,7 +21,7 @@ export class MapComponent implements AfterViewInit {
     // Puis on y définit le centre de la carte et la valeur de zoom de départ avec les options de l'API
     this.map = L.map('map', {
       center: [48.866667, 2.333333], // Paris
-      zoom: 4,
+      zoom: 5,
     });
 
     // On ajoute une couche de tuiles OpenStreetMap à la carte
@@ -41,5 +43,6 @@ export class MapComponent implements AfterViewInit {
   // Appelé après l’initialisation de la vue du composant
   ngAfterViewInit(): void {
     this.initMap();
+    // this.markerService.makeCapitalMarkers(this.map);
   }
 }

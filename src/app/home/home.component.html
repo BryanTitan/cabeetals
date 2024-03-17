@@ -47,6 +47,9 @@
 <div *ngIf="screen === 1">
   <app-map></app-map>
 </div>
-<div *ngIf="screen === 2">
-  <app-capitals></app-capitals>
+<div *ngIf="screen === 2" class="capitals">
+  <app-capitals
+    *ngFor="let capital of capitals"
+    [capital]="capital"
+  ></app-capitals>
 </div>
