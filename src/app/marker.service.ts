@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import * as L from 'leaflet';
 
 import { CityService } from './city.service';
+import { PopupService } from './popup.service';
 
 @Injectable({
   providedIn: 'root',
@@ -26,15 +27,17 @@ export class MarkerService {
   //   });
   // }
 
-  // Du coup, on récupère les données en dur dans le service pour afficher les marqueurs sur la carte
   cityService: CityService = inject(CityService);
+  popupService: PopupService = inject(PopupService);
+
+  // Du coup, on récupère les données en dur dans le service pour afficher les marqueurs sur la carte
   makeCityMarkers(map: L.Map): void {
     const cities = this.cityService.getAllCities();
     for (const city of cities) {
       const lat = city.coordinates[0];
       const lon = city.coordinates[1];
       const marker = L.marker([lat, lon]).addTo(map);
-      marker.bindPopup(city.name);
+      marker.bindPopup(this.popupService.makeCityPopup(city));
     }
   }
 }
