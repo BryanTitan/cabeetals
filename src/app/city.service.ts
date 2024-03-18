@@ -77,6 +77,10 @@ export class CityService {
   }
 
   addCity(city: City): void {
-    this.cities.push(city);
+    let updatedId = this.cities.length + 1;
+    const isCityExist = this.cities.find((c) => c.id === updatedId);
+    if (isCityExist) updatedId += 1;
+
+    this.cities.push({ ...city, id: updatedId });
   }
 }
