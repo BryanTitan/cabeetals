@@ -27,7 +27,7 @@ export class DetailsComponent {
         id: 0,
         name: '',
         country: '',
-        population: '',
+        population: 0,
         coordinates: [0, 0],
         isCapital: false,
       };

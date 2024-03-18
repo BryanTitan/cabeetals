@@ -1,5 +1,4 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import * as L from 'leaflet';
 
 import { CityService } from './city.service';
@@ -31,21 +30,34 @@ export class MarkerService {
   cityService: CityService = inject(CityService);
   popupService: PopupService = inject(PopupService);
 
+  static scaledRadius(val: number, maxVal: number): number {
+    return 20 * (val / maxVal);
+  }
+
   // Du coup, on récupère les données en dur dans le service pour afficher les marqueurs sur la carte
   makeCityMarkers(map: L.Map): void {
     const cities = this.cityService.getAllCities();
+    const maxPop = Math.max(
+      ...cities.map((city) => Number(city.population)),
+      0
+    );
+
+    // Ajout des marqueurs pour chaque ville
     for (const city of cities) {
       const lat = city.coordinates[0];
       const lon = city.coordinates[1];
-      const marker = L.circleMarker([lat, lon]).addTo(map);
+      const marker = L.circleMarker([lat, lon], {
+        radius: MarkerService.scaledRadius(Number(city.population), maxPop),
+      }).addTo(map);
       marker.bindPopup(this.popupService.makeCityPopup(city));
     }
 
+    // Ajout du marqueur pour la position actuelle
     this.getCurrentPosition().subscribe({
       next: (position) => {
-        const lat = position.coords.latitude;
-        const lon = position.coords.longitude;
-        const marker = L.marker([lat, lon]).addTo(map);
+        const currentUserLat = position.coords.latitude;
+        const currentUserLon = position.coords.longitude;
+        const marker = L.marker([currentUserLat, currentUserLon]).addTo(map);
         marker.bindPopup('Tu es ici !');
       },
       error: (error) => {

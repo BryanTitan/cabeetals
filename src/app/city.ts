@@ -2,7 +2,7 @@ export interface City {
   id: number;
   name: string;
   country: string;
-  population: string;
+  population: number;
   coordinates: number[];
   isCapital: boolean;
 }

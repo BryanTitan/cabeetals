@@ -12,7 +12,9 @@ export class PopupService {
       `` +
       `<div>${data.isCapital ? 'Capitale' : 'Ville'}: ${data.name}</div>` +
       `<div>Pays: ${data.country}</div>` +
-      `<div>Population: ${data.population}</div>`
+      `<div>Population: ${data.population
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</div>`
     );
   }
 }
