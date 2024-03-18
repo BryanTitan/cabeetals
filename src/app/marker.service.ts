@@ -4,6 +4,7 @@ import * as L from 'leaflet';
 
 import { CityService } from './city.service';
 import { PopupService } from './popup.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -36,8 +37,38 @@ export class MarkerService {
     for (const city of cities) {
       const lat = city.coordinates[0];
       const lon = city.coordinates[1];
-      const marker = L.marker([lat, lon]).addTo(map);
+      const marker = L.circleMarker([lat, lon]).addTo(map);
       marker.bindPopup(this.popupService.makeCityPopup(city));
     }
+
+    this.getCurrentPosition().subscribe({
+      next: (position) => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        const marker = L.marker([lat, lon]).addTo(map);
+        marker.bindPopup('Tu es ici !');
+      },
+      error: (error) => {
+        console.error('Error getting geolocation:', error);
+      },
+    });
+  }
+
+  getCurrentPosition(): Observable<any> {
+    return new Observable((observer) => {
+      if ('geolocation' in navigator) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            observer.next(position);
+            observer.complete();
+          },
+          (error) => {
+            observer.error(error);
+          }
+        );
+      } else {
+        observer.error('Geolocation is not available in this browser.');
+      }
+    });
   }
 }
