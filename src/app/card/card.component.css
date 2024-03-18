@@ -80,8 +80,11 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   transition: all 0.3s;
-  /* position right */
   position: absolute;
   bottom: 10px;
   right: 10px;
+}
+
+.link:hover {
+  background-color: var(--primary-color);
 }

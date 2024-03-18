@@ -63,4 +63,12 @@ export class CityService {
   getCityById(id: number): City | undefined {
     return this.cities.find((city) => city.id === id);
   }
+
+  deleteCity(city: City): void {
+    this.cities = this.cities.filter((c) => c.id !== city.id);
+  }
+
+  addCity(city: City): void {
+    this.cities.push(city);
+  }
 }

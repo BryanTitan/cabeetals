@@ -7,11 +7,13 @@ const routeConfig: Routes = [
     component: HomeComponent,
     title: 'Home',
   },
-
   {
     path: 'details/:id',
     component: DetailsComponent,
-    title: 'City details',
+  },
+  {
+    path: 'add',
+    component: DetailsComponent,
   },
 ];
 

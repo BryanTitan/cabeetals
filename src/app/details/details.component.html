@@ -1,0 +1,88 @@
+<div class="container">
+  <div class="modal" *ngIf="city">
+    <div class="modal__header">
+      <span class="modal__title">{{ city?.name }}</span
+      ><button class="button button--icon" (click)="goBack()">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+          <path
+            d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"
+          />
+        </svg>
+      </button>
+    </div>
+    <div class="modal__body">
+      <div class="input">
+        <label class="input__label">Nom</label>
+        <input
+          class="input__field"
+          type="text"
+          id="name"
+          [(ngModel)]="city.name"
+        />
+      </div>
+      <div class="input">
+        <label class="input__label">Pays</label>
+        <input
+          class="input__field"
+          type="text"
+          id="city-country"
+          [(ngModel)]="city.country"
+        />
+      </div>
+      <div class="input">
+        <label class="input__label">Population</label>
+        <input
+          class="input__field"
+          type="text"
+          id="city-population"
+          [(ngModel)]="city.population"
+        />
+      </div>
+      <div class="double__input">
+        <div class="input">
+          <label class="input__label">Lattitude</label>
+          <input
+            class="input__field"
+            type="text"
+            id="city-lattitude"
+            [(ngModel)]="city.coordinates[0]"
+          />
+        </div>
+        <div class="input">
+          <label class="input__label">Longitude</label>
+          <input
+            class="input__field"
+            type="text"
+            id="city-lattitude"
+            [(ngModel)]="city.coordinates[1]"
+          />
+        </div>
+      </div>
+      <div class="input">
+        <label class="input__checkbox__label">
+          <input
+            type="checkbox"
+            class="input__checkbox"
+            id="city-capital"
+            [(ngModel)]="city.isCapital"
+          />
+          La ville est-elle une capitale ?</label
+        >
+      </div>
+    </div>
+    <div class="modal__footer">
+      <button
+        *ngIf="city.id !== 0; else addCity"
+        class="button button--primary button--danger"
+        (click)="onDelete()"
+      >
+        Supprimer
+      </button>
+      <ng-template #addCity>
+        <button class="button button--primary" (click)="onAdd()">
+          Ajouter
+        </button>
+      </ng-template>
+    </div>
+  </div>
+</div>

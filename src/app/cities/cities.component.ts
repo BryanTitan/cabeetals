@@ -3,18 +3,19 @@ import { CommonModule } from '@angular/common';
 import { City } from '../city';
 import { CityService } from '../city.service';
 import { CardComponent } from '../card/card.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-cities',
   standalone: true,
-  imports: [CommonModule, CardComponent],
+  imports: [CommonModule, CardComponent, RouterLink],
   template: `
     <div class="container">
       <div class="list">
         <app-card *ngFor="let city of cities" [city]="city"></app-card>
       </div>
       <div class="button">
-        <button class="cssbuttons-io-button">
+        <button class="cssbuttons-io-button" routerLink="/add">
           Ajouter une ville
           <div class="icon">
             <svg
