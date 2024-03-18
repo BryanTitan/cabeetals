@@ -1,6 +1,21 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, inject } from '@angular/core';
 import * as L from 'leaflet';
 import { MarkerService } from '../marker.service';
+
+const iconRetinaUrl = 'assets/marker-icon-2x.png';
+const iconUrl = 'assets/marker-icon.png';
+const shadowUrl = 'assets/marker-shadow.png';
+const iconDefault = L.icon({
+  iconRetinaUrl,
+  iconUrl,
+  shadowUrl,
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  tooltipAnchor: [16, -28],
+  shadowSize: [41, 41],
+});
+L.Marker.prototype.options.icon = iconDefault;
 
 @Component({
   selector: 'app-map',
@@ -10,7 +25,7 @@ import { MarkerService } from '../marker.service';
   styleUrl: './map.component.css',
 })
 export class MapComponent implements AfterViewInit {
-  // markerService: MarkerService = inject(MarkerService);
+  markerService: MarkerService = inject(MarkerService);
   // Afin d'ajouter la carte intéractive, je me suis aidé grâce à la documentation de Leaflet et de l'API OpenStreetMap.
   // Un tuto est disponible sur le site de DigitalOcean à cette adresse :
   // https://www.digitalocean.com/community/tutorials/angular-angular-and-leaflet#step-1-setting-up-the-project
@@ -43,6 +58,6 @@ export class MapComponent implements AfterViewInit {
   // Appelé après l’initialisation de la vue du composant
   ngAfterViewInit(): void {
     this.initMap();
-    // this.markerService.makeCapitalMarkers(this.map);
+    this.markerService.makeCityMarkers(this.map);
   }
 }

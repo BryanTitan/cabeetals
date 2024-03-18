@@ -12,7 +12,7 @@ import { CitiesComponent } from '../cities/cities.component';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
-  screen: number = 2;
+  screen: number = 1;
 
   select(selected: number) {
     this.screen = selected;
